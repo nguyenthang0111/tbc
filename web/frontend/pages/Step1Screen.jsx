@@ -7,13 +7,21 @@ import {
     Stack,
     Link,
     Text,
+    List,
   } from "@shopify/polaris";
   import { TitleBar } from "@shopify/app-bridge-react";
   import { useTranslation, Trans } from "react-i18next";
-  
+  import {Divider, VerticalStack} from '@shopify/polaris';
+  import {Theme1} from "../components"
+  import { ProductsCard } from "../components";
   export default function Step1Screen() {
     return (
-      <Text>Step 1 Screen</Text>
+     <div>
+      <Theme1/>  
+     
+     </div>
     );
   }
-  
+
+
+
