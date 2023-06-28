@@ -1,23 +1,22 @@
 import {
-  Card,
-  Page,
-  Layout,
-  TextContainer,
-  Image,
-  Stack,
-  Link,
-  Text,
-  List,
-} from "@shopify/polaris";
-import { TitleBar } from "@shopify/app-bridge-react";
-import { useTranslation, Trans } from "react-i18next";
-import {Divider, VerticalStack} from '@shopify/polaris';
-//import { Theme1 } from "../components";
-import { ProductsCard } from "../components";
-export default function Step1Screen() {
-  return (
+    Card,
+    Page,
+    Layout,
+    TextContainer,
+    Image,
+    Stack,
+    Link,
+    Text,
+    List,
+  } from "@shopify/polaris";
+  import { TitleBar } from "@shopify/app-bridge-react";
+  import { useTranslation, Trans } from "react-i18next";
+  import {Divider, VerticalStack} from '@shopify/polaris';
+  
+  export default function Theme1() {
+    return (
    
-    <Page narrowWidth>
+      <Page narrowWidth>
       <TitleBar title="Table of Content" primaryAction={null} />
       <Layout>
         <Layout.Section>
@@ -31,7 +30,7 @@ export default function Step1Screen() {
               <Stack.Item fill>
                 <TextContainer spacing="loose">  
               
-            
+            <div>
               <VerticalStack gap="3">
                 <Text as="h1" variant="headingXs">
                       Table of Contents
@@ -59,20 +58,22 @@ export default function Step1Screen() {
                 </List>
 
               </VerticalStack>
-          
+          </div>
               
           </TextContainer>
               </Stack.Item>
-        
+         
 
 
             </Stack>
           </Card>
-        
+         
         </Layout.Section>
       </Layout>
-  </Page> 
-   
- 
-  );
-}
+    </Page> 
+       
+    );
+  }
+
+
+
