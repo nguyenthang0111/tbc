@@ -12,67 +12,44 @@ import {
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation, Trans } from "react-i18next";
 import {Divider, VerticalStack} from '@shopify/polaris';
+import {Grid, LegacyCard} from '@shopify/polaris';
 //import { Theme1 } from "../components";
 import { ProductsCard } from "../components";
 export default function Step1Screen() {
   return (
    
-    <Page narrowWidth>
-      <TitleBar title="Table of Content" primaryAction={null} />
-      <Layout>
-        <Layout.Section>
-        <Card sectioned>
-            <Stack
-              wrap={false}
-              spacing="extraTight"
-              distribution="trailing"
-              alignment="center"
-            >
-              <Stack.Item fill>
-                <TextContainer spacing="loose">  
-              
-            
-              <VerticalStack gap="3">
-                <Text as="h1" variant="headingXs">
-                      Table of Contents
-                </Text>
-                <Text as="h1" variant="headingXs">
-                  [Heading1]
-                </Text>
-                <Divider borderColor="border-inverse" />
+    <Page fullWidth>
+    <Grid>
+      <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
+        <LegacyCard title="Sales" sectioned>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+        </LegacyCard>
+      </Grid.Cell>
+      <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
+        <LegacyCard title="Sales" sectioned>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+        </LegacyCard>
+      </Grid.Cell>
+      <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
+        <LegacyCard title="Sales" sectioned>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+          <p>View a summary of your online store’s sales.</p>
+        </LegacyCard>
+      </Grid.Cell>
 
-                <List type="bullet">
-                <List.Item>Heading2</List.Item>
-                <List.Item>Heading3</List.Item>
-                <List.Item>Heading4</List.Item>
-                </List>
-
-                <Text as="h1" variant="headingXs">
-                  [Heading1]
-                </Text>
-                <Divider borderColor="border-inverse" />
-
-                <List type="bullet">
-                <List.Item>Heading2</List.Item>
-                <List.Item>Heading3</List.Item>
-                <List.Item>Heading4</List.Item>
-                </List>
-
-              </VerticalStack>
-          
-              
-          </TextContainer>
-              </Stack.Item>
-        
-
-
-            </Stack>
-          </Card>
-        
-        </Layout.Section>
-      </Layout>
-  </Page> 
-   
+    </Grid>
+  </Page>
  
   );
 }

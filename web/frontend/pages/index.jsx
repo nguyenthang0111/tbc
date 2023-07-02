@@ -15,13 +15,23 @@ import { trophyImage } from "../assets";
 
 import { ProductsCard } from "../components";
 
+
 export default function HomePage() {
   const { t } = useTranslation();
   return (
     <Page narrowWidth>
       <Layout>
         <Layout.Section>
-          <Link url={"/step1screen"} external={false}>
+            <Link url={"/Themestep1"} external={false}>
+              <Text>Themestep1 Screen</Text>
+            </Link>
+            <Link url={"/Themestep2"} external={false}>
+              <Text>Themestep2 Screan</Text>
+            </Link>
+            <Link url={"/Themestep3"} external={false}>
+              <Text>Themestep3 Screan</Text>
+            </Link>
+            <Link url={"/step1screen"} external={false}>
               <Text>Step 1 Screen</Text>
             </Link>
             <Link url={"/step2screen"} external={false}>
