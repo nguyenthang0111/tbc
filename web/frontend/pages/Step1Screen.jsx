@@ -15,7 +15,7 @@ import {Divider, VerticalStack} from '@shopify/polaris';
 import {Grid, LegacyCard} from '@shopify/polaris';
 
 //import { Theme1 } from "../components";
-import { ProductsCard } from "../components";
+import { Botton1, ProductsCard } from "../components";
 export default function Step1Screen() {
   return (
    
@@ -24,60 +24,69 @@ export default function Step1Screen() {
       <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
         <LegacyCard title="Table of contents" sectioned>
 
-          <Text as="h1" variant="headingXs">
-            [Heading1]
-          </Text>
-          <Divider borderColor="border-inverse" />
-    
-          <List type="bullet">
-          <List.Item>Heading2</List.Item>
-          <List.Item>Heading3</List.Item>
-          <List.Item>Heading4</List.Item>
-          </List>
-          <Text as="h1" variant="headingXs">
-            [Heading1]
-          </Text>
-          <Divider borderColor="border-inverse" />
-    
-          <List type="bullet">
-          <List.Item>Heading2</List.Item>
-          <List.Item>Heading3</List.Item>
-          <List.Item>Heading4</List.Item>
-          </List>
+        <ol>
+          <li style={{ paddingLeft: '10px' }}>heading1</li>
+
+          <li style={{ paddingLeft: '20px' }}>heading2</li>
+          <li style={{ paddingLeft: '30px' }}>Heading3</li>
+          <li style={{ paddingLeft: '40px' }}>heading4</li>
+        </ol>
+        <ol>
+          <li style={{ paddingLeft: '10px' }}>heading1</li>
+
+          <li style={{ paddingLeft: '20px' }}>heading2</li>
+          <li style={{ paddingLeft: '30px' }}>Heading3</li>
+          <li style={{ paddingLeft: '40px' }}>heading4</li>
+        </ol>
+          
+         
         </LegacyCard>
       </Grid.Cell>
       <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
         <LegacyCard title="table of Contents" sectioned>
+        <ul>
+            <li>heading1</li>
+            <Divider borderColor="border-inverse" />
+            <li>heading2</li>
+            <Divider borderColor="border-inverse" />
+            <li>Heading3</li>
+            <Divider borderColor="border-inverse" />
+            <li>heading4</li>
+            <Divider borderColor="border-inverse" />
+          </ul>
+          <ul >
+            <li>heading1</li>
+            <Divider borderColor="border-inverse" />
+            <li>heading2</li>
+            <Divider borderColor="border-inverse" />
+            <li>Heading3</li>
+            <Divider borderColor="border-inverse" />
+            <li>heading4</li>
+            <Divider borderColor="border-inverse" />
+          </ul>
 
-          <p>Heading1</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading2</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading3</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading4</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading1</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading2</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading3</p>
-          <Divider borderColor="border-inverse" />
-          <p>Heading4</p>
-          <Divider borderColor="border-inverse" />
+          
         </LegacyCard>
       </Grid.Cell>
       <Grid.Cell columnSpan={{xs: 3, sm: 3, md: 2, lg: 6, xl: 6}}>
-        <LegacyCard title="Sales" sectioned>
-          <p>View a summary of your online store’s sales.</p>
-          <p>View a summary of your online store’s sales.</p>
-          <p>View a summary of your online store’s sales.</p>
-          <p>View a summary of your online store’s sales.</p>
-          <p>View a summary of your online store’s sales.</p>
+        <LegacyCard title="Table of contents" sectioned>
+        <ul>
+            <li>heading1</li>
+            <li>heading2</li>
+            <li>Heading3</li>
+            <li>heading4</li>
+          </ul>
+          <ul >
+            <li>heading1</li>
+            <li>heading2</li>
+            <li>Heading3</li>
+            <li>heading4</li>
+          </ul>
         </LegacyCard>
       </Grid.Cell>
 
     </Grid>
+    <Botton1/>
   </Page>
  
   );
