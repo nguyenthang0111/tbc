@@ -15,7 +15,7 @@ import {
   import {Divider, VerticalStack} from '@shopify/polaris';
   
   
-  export function Theme1({ data }) {
+  export function Theme2({ data }) {
     return (
       <LegacyCard>
         <div style={{width: '350px', height:'250px'}}>
@@ -25,7 +25,7 @@ import {
                 <div key={index}>
       
                   <li style={{ fontSize: '15px' }}>
-                    <a href="/" style={{pointerEvents:'none'}}> {heading.h1}</a>
+                    <a href="/" style={{textDecoration: 'none',pointerEvents:'none'}}> {heading.h1}</a>
                   </li>
                   <li >
                     <a href="" style={{pointerEvents:'none'}}> {heading.h2}</a>
