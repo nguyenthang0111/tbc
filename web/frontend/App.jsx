@@ -23,8 +23,20 @@ export default function App() {
             <NavigationMenu
               navigationLinks={[
                 {
-                  label: t("NavigationMenu.pageName"),
-                  destination: "/pagename",
+                  label: "Step 1",
+                  destination: "/step1screen",
+                },
+                {
+                  label: "Step 2",
+                  destination: "/step2screen",
+                },
+                {
+                  label: "Main",
+                  destination: "/mainscreen",
+                },
+                {
+                  label: "Customize",
+                  destination: "/customizescreen",
                 },
               ]}
             />
