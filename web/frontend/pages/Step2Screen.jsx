@@ -21,45 +21,48 @@ import { ListItem } from "../components/ListItem";
       {
         id: '1',
         name: 'Article Name 1',
+        status: 'off'
       },
       {
         id: '2',
         name: 'Article Name 2',
+        status: 'on'
       },
       {
         id: '3',
         name: 'Article Name 3',
+        status: 'off'
       },
       {
         id: '4',
         name: 'Article Name 4',
+        status: 'on'
       },
       {
         id: '5',
         name: 'Article Name 5',
+        status: 'off'
       },
       {
         id: '6',
         name: 'Article Name 6',
+        status: 'on'
       },
     ];
 
     return (
-      <Page narrowWidth>
+      <Page 
+        narrowWidth
+        title='Step 2: Add app to your article'
+      >
         <Layout>
-          <Layout.Section>
-            <Text variant="heading2xl" as="h3">Step 2: Add app to your blog</Text>
-          </Layout.Section>
           <Layout.Section>
             <LegacyCard sectioned>
               <p>
-                Add table of contents generation to your blog using the App Block or 
-                App Embed feature provided by Shopify.
+                Add table of contents generation to your article by pressing on/off button s.
               </p>
               <Search />
-              <Scrollable shadow style={{height: '200px'}} focusable>
-                <ListItem data={articles}/>
-              </Scrollable>
+              <ListItem data={articles}/>
               <div style={{textAlign:'center', paddingTop:'10px'}}>
                 <Button primary >Next</Button>
               </div>

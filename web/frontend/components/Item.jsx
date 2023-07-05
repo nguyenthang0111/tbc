@@ -4,9 +4,10 @@ import { useTranslation } from "react-i18next";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 import {useState, useCallback} from 'react';
 
-export function Item({ item }) {
+export function Item({ item, message }) {
   // Change state on/off button
-  const [isFirstButtonActive, setIsFirstButtonActive] = useState(true);
+
+  const [isFirstButtonActive, setIsFirstButtonActive] = useState(item.status == 'on' ? true : false);
 
   const handleFirstButtonClick = useCallback(() => {
     if (isFirstButtonActive) return;
@@ -18,7 +19,6 @@ export function Item({ item }) {
     setIsFirstButtonActive(false);
   }, [isFirstButtonActive]);
   
-  console.log(item)
   return (
     <div style={{padding: '5px 0', display:'flex', justifyContent:'space-between'}}>
       <Text>{item.name}</Text>
