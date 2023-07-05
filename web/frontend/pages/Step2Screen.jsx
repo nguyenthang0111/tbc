@@ -59,12 +59,12 @@ import { ListItem } from "../components/ListItem";
           <Layout.Section>
             <LegacyCard sectioned>
               <p>
-                Add table of contents generation to your article by pressing on/off button s.
+                Add table of contents generation to your article by pressing on/off button.
               </p>
               <Search />
               <ListItem data={articles}/>
               <div style={{textAlign:'center', paddingTop:'10px'}}>
-                <Button primary >Next</Button>
+                <Button primary url="/mainscreen">Next</Button>
               </div>
             </LegacyCard>
           </Layout.Section>

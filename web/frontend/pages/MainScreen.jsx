@@ -60,7 +60,7 @@ import { Search } from "../components/Search";
         <VerticalStack gap='5'>
           <div>
             <LegacyCard
-              secondaryFooterActions={[{content: 'Customize'}]}
+              secondaryFooterActions={[{content: 'Customize', url: '/customizescreen'}]}
             >
               <LegacyCard.Header
                 title="Customize Table of contents"
