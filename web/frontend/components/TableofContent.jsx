@@ -8,6 +8,8 @@ import {
     Link,
     Text,
     List,
+    Button,
+    LegacyCard,
   } from "@shopify/polaris";
   import { TitleBar } from "@shopify/app-bridge-react";
   import { useTranslation, Trans } from "react-i18next";
@@ -15,46 +17,37 @@ import {
   import { useAppQuery, useAuthenticatedFetch } from "../hooks";
   import { useState, useCallback } from 'react';
 
-  export function TableofContent() {
+  export function TableofContent({data}) {
     return (
-     
 
         <Layout>
-          <Layout.Section>
-              <Stack
-                wrap={false}
-                spacing="extraTight"
-                distribution="trailing"
-                alignment="center"
-              >
-                <Stack.Item fill>
-                  <TextContainer spacing="loose">  
-                <VerticalStack gap="3">
-                    <Card sectioned> 
-                    <Text as="h1" variant="headingXs"> Heading1 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h2" margin="15px" variant="headingXs"> Heading2 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h3" variant="headingXs"> Heading3 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h4" variant="headingXs"> Heading4 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h1" variant="headingXs"> Heading1 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h2" variant="headingXs"> Heading2 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h3" variant="headingXs"> Heading3 </Text>
-                    <Divider borderColor="border-inverse" />
-                    <Text as="h4" variant="headingXs"> Heading4 </Text>
-                    <Divider borderColor="border-inverse" />
-                    </Card>
-                </VerticalStack>
-                </TextContainer>
-                </Stack.Item>
-              </Stack>
-          </Layout.Section>
-        </Layout>
-
+        <LegacyCard>
+          <div style={{width: '350px', height:'250px'}}>
+            <div style={{margin: 'auto',paddingLeft: '15px',paddingTop:'7px'}}>
+              <ul style={{ listStyle: 'none', margin:'0px', padding: '0px'}}>
+              {data.map((heading, index) => (
+                <div key={index}>
+                  <li style={{ display:'list-item',padding:'4px 0px ',borderBottom:'none', listStyleType:'none' }}>
+                    <a href="/" style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer' }}> {heading.h1}</a>
+                  </li>
+                  <li style={{ display:'list-item',margin:'0px 0px 0px 16px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
+                    <a href="/" style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer' }}> {heading.h2}</a>
+                  </li>
+                  <li style={{ display:'list-item',margin:'0px 0px 0px 32px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
+                    <a href=""style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer'  }}> {heading.h3}</a>
+                  </li >
+                  <li style={{ display:'list-item',margin:'0px 0px 0px 48px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
+                  <a href=""style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer'  }}> {heading.h4}</a>
+                  </li>
+                </div>
+    
+              ))}
+              </ul>
+            </div>
+          </div>
+        </LegacyCard>
+      </Layout>
+   
     );
   }
   

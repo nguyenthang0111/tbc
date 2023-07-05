@@ -71,8 +71,7 @@ const [color3, setColor3] = useState({
   saturation: 1,
 });
     return (
-       
-        <Card>
+          <Card>
           <VerticalStack >
           <div style={{ padding:'15px'}}>
           <TextField
@@ -123,9 +122,7 @@ const [color3, setColor3] = useState({
           <VerticalStack>
           
           <Text>Color of background</Text>
-          <div style={{width: '100%'}}>
           <ColorPicker onChange={setColor1} color={color1} />
-          </div>
           <Text>Color of line</Text>
           <ColorPicker onChange={setColor2} color={color2} />
           <Text>Color of text</Text>
@@ -135,8 +132,7 @@ const [color3, setColor3] = useState({
           
           </div>
           </VerticalStack>
-        </Card>
-
+          </Card>
 
     );
   }
