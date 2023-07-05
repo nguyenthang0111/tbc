@@ -21,6 +21,9 @@ export default function HomePage() {
     <Page narrowWidth>
       <Layout>
         <Layout.Section>
+            <Link url={"/Test"} external={false}>
+              <Text>Test</Text>
+            </Link>
           <Link url={"/step1screen"} external={false}>
               <Text>Step 1 Screen</Text>
             </Link>
