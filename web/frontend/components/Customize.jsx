@@ -1,5 +1,5 @@
 
-import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Card, Text, TextField } from "@shopify/polaris";
+import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Form, Text, TextField, LegacyCard, FormLayout } from "@shopify/polaris";
 import { Toast } from "@shopify/app-bridge-react";
 import { useTranslation } from "react-i18next";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
@@ -8,31 +8,46 @@ import {TextAlignmentRightMajor} from '@shopify/polaris-icons';
 import { Size } from "@shopify/app-bridge/actions/Modal";
 
 export function Customize() {
-  //TextField
-  const [textFieldValue, setTextFieldValue] = useState('Table of contents');
-  const handleTextFieldChange = useCallback(
-    (value) => setTextFieldValue(value),
+  // const handleChange = (event) => {
+  //   console.log(event);
+  // };
+
+  // Table of content title
+  const [title, setTitle] = useState('Table of Contents');
+  const handleTitleChange = useCallback(
+    (value) => {
+      setTitle(value);
+    },  
     [],
   );
+
   //Select Indentation
-  const [selected1, setSelected1] = useState('today');
-  const handleSelectChange1 = useCallback(
-    (value) => setSelected1(value),
+  const [indentation, setIndentation] = useState('Off');
+  const handleIndentationChange = useCallback(
+    (value) => {
+      setIndentation(value);
+    },
     [],
   );
+
   const options1 = [
     {label: 'On', value: 'On'},
     {label: 'Off', value: 'Off'},
   ];
-  const [selected2, setSelected2] = useState('today');
-  const handleSelectChange2 = useCallback(
-    (value) => setSelected2(value),
+
+  // Select Section Line
+  const [section, setSection] = useState('On');
+  const handleSectionChange = useCallback(
+    (value) => {
+      setSection(value);
+    },
     [],
   );
   const options2 = [
     {label: 'On', value: 'On'},
     {label: 'Off', value: 'Off'},
   ];
+
 //Headings
 const [checked1, setChecked1] = useState(false);
 const handleChange1 = useCallback(
@@ -70,70 +85,88 @@ const [color3, setColor3] = useState({
   brightness: 1,
   saturation: 1,
 });
+
+    // Set value of form
+    const [formValues, setFormValues] = useState({
+      title,
+      indentation,
+      section
+    });
+    // Handle submit form
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(formValues)
+    }
+
     return (
-          <Card>
-          <VerticalStack >
-          <div style={{ padding:'15px'}}>
-          <TextField
-            label="Table Of Contents Title"
-            type="text"
-            value={textFieldValue}
-            onChange={handleTextFieldChange}
-            helpText="If you do not need a Header, leave it blank."
-            autoComplete="off"
-          />
-          <Select
-            prefix={<Icon source={TextAlignmentRightMajor} />}
-            label="Indentation"
-            options={options1}
-            onChange={handleSelectChange1}
-            value={selected1}
-          />
+      <Form onSubmit={handleSubmit}>
+          <Text as="span" >
+            <button type="submit" aria-hidden='true' tabIndex={-1}>Submit</button>
+          </Text>
+         <FormLayout>
+          <LegacyCard>
+            <VerticalStack >
+              <div style={{ padding:'15px'}}>
+              <TextField
+                label="Table Of Contents Title"
+                type="text"
+                value={title}
+                onChange={handleTitleChange}
+                helpText="If you do not need a Header, leave it blank."
+                autoComplete="off"
+              />
+              <Select
+                prefix={<Icon source={TextAlignmentRightMajor} />}
+                label="Indentation"
+                options={options1}
+                onChange={handleIndentationChange}
+                value={indentation}
+              />
 
-          <Select
-            label="Selection Line"
-            options={options2}
-            onChange={handleSelectChange2}
-            value={selected2}
-          />
-          <VerticalStack>
-            <Text> Headings </Text>
-            <Checkbox
-              label="H1"
-              checked={checked1}
-              onChange={handleChange1}
-            />
-            <Checkbox
-              label="H2"
-              checked={checked2}
-              onChange={handleChange2}
-            />
-            <Checkbox
-              label="H3"
-              checked={checked3}
-              onChange={handleChange3}
-            />
-            <Checkbox
-              label="H4"
-              checked={checked4}
-              onChange={handleChange4}
-            />
-          </VerticalStack>
-          <VerticalStack>
+              <Select
+                label="Section Line"
+                options={options2}
+                onChange={handleSectionChange}
+                value={section}
+              />
+              <VerticalStack>
+                <Text> Headings </Text>
+                <Checkbox
+                  label="h1"
+                  checked={checked1}
+                  onChange={handleChange1}
+                />
+                <Checkbox
+                  label="h2"
+                  checked={checked2}
+                  onChange={handleChange2}
+                />
+                <Checkbox
+                  label="h3"
+                  checked={checked3}
+                  onChange={handleChange3}
+                />
+                <Checkbox
+                  label="h4"
+                  checked={checked4}
+                  onChange={handleChange4}
+                />
+              </VerticalStack>
+            <VerticalStack>
           
-          <Text>Color of background</Text>
-          <ColorPicker onChange={setColor1} color={color1} />
-          <Text>Color of line</Text>
-          <ColorPicker onChange={setColor2} color={color2} />
-          <Text>Color of text</Text>
-          <ColorPicker onChange={setColor3} color={color3} />
-          
-          </VerticalStack>
-          
+              <Text>Color of background</Text>
+              <ColorPicker onChange={setColor1} color={color1} />
+              <Text>Color of line</Text>
+              <ColorPicker onChange={setColor2} color={color2} />
+              <Text>Color of text</Text>
+              <ColorPicker onChange={setColor3} color={color3} />
+              
+            </VerticalStack>
           </div>
-          </VerticalStack>
-          </Card>
-
+        </VerticalStack>
+      </LegacyCard>
+      </FormLayout>
+      </Form>
     );
   }
 

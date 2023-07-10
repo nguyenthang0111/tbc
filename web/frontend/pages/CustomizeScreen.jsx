@@ -8,6 +8,7 @@ import {
     Link,
     Text,
     LegacyCard,
+    LegacyStack,
     HorizontalGrid,
     VerticalStack,
   } from "@shopify/polaris";
@@ -20,42 +21,54 @@ import {
     const headings = [
       {
         id: '1',
-        h1: 'heading 1',
-        h2: 'heading 2',
-        h3: 'heading 3',
-        h4: 'heading 4',
+        h1: 'Heading 1',
+        h2: 'Heading 2',
+        h3: 'Heading 3',
+        h4: 'Heading 4',
       },
       {
         id: '2',
-        h1: 'heading 1',
-        h2: 'heading 2',
-        h3: 'heading 3',
-        h4: 'heading 4',
+        h1: 'Heading 1',
+        h2: 'Heading 2',
+        h3: 'Heading 3',
+        h4: 'Heading 4',
+      },
+    ]
+    const settings = [
+      {
+        id: '1',
+        h1: 'Setting 1',
+        h2: 'Heading 2',
+        h3: 'Heading 3',
+        h4: 'Heading 4',
+      },
+      {
+        id: '2',
+        h1: 'Heading 1',
+        h2: 'Heading 2',
+        h3: 'Heading 3',
+        h4: 'Heading 4',
       },
     ]
     return (
       <Page
-          backAction={{content: 'Orders', url: '/mainscreen'}}
+          backAction={{content: 'Back', url: '/mainscreen'}}
           title="Customize the table of contents">
         <Layout>
             <Layout.Section>
-              <HorizontalGrid gap="4" columns={2}>
-                <VerticalStack>
+              <HorizontalGrid gap="4" columns={['twoThirds', 'oneThird']}>
+                <VerticalStack gap='4'>
                   <Customize/>
                 </VerticalStack>
                 <VerticalStack>
-                  <LegacyCard>
-                    <div style={{ padding:'20px'}} >
-                    <Text> Priview </Text>
-                    <div style={{ paddingTop:'15px'}} >
-                    <p> A table of contents in the style below will be inserted into the template. </p>
-                    </div>
-                    </div>
-                    <Layout.Section>
-                    <div style={{ paddingBottom: '30px'}} >
-                    <TableofContent data={headings}/> 
-                    </div>
-                    </Layout.Section>
+                  <LegacyCard title='Preview'>
+
+                    <LegacyCard.Section>
+                      <LegacyStack spacing="tight" vertical>
+                        <p>A table of contents in the style below will be inserted into the template.</p>
+                        <TableofContent data={headings} settings={settings}/> 
+                      </LegacyStack>
+                    </LegacyCard.Section>
                     
                   </LegacyCard>
                 </VerticalStack>
