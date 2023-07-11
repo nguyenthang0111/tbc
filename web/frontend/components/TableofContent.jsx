@@ -12,25 +12,118 @@ import {
   import { useAppQuery, useAuthenticatedFetch } from "../hooks";
   import { useState, useCallback } from 'react';
 
-  export function TableofContent({data, settings}) {
-    console.log(settings)
+  export function TableofContent({data}) {
+      const setting = {
+        title: 'Test Table of content',
+        identation: 'On',
+        section: 'On'
+      }
+    console.log(setting)
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
         <div style={{width:'100%', maxWidth:'none', margin: '0px', padding: '16px', backgroundColor:'rgb(247,249,249)', border: '1px solid rgb(228,228,228)'}}>
+          <div style={{ display: 'flex', flexDirection:'row', alignItems:'center', margin: '0', padding: '0'}}>
+            {setting.title &&
+              <h2 style={{ margin: '0 8px 0 0', padding: '0px', lineHeight: '1.5', fontSize:'14px', fontWeight:'700', letterSpacing: '0.04em'}}>
+                {setting.title}
+              </h2>
+            }
+          </div>
+
           <ul style={{ listStyle: 'none', margin:'0px', padding: '0px'}}>
             {data.map((heading, index) => (
               <div key={index}>
-                <li style={{ display:'list-item',padding:'4px 0px ',borderBottom:'none', listStyleType:'none' }}>
-                  <a href="/" style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer' }}> {heading.h1}</a>
+                {/* Heading 1 */}
+                <li style={{ 
+                  display:'list-item',
+                  padding:'8px 0px ',
+                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  listStyleType:'none' 
+                }}>
+                  <a href="/" style={{
+                    display:'flex', 
+                    alignItems:'center', 
+                    width:'100%', 
+                    margin: '0px', 
+                    padding:'0px', 
+                    lineHeight:'1.5', 
+                    color:'rgb(111, 115, 114)', 
+                    fontSize:'14px',
+                    textDecoration:'none',
+                    cursor: 'pointer' }}> 
+                      {heading.h1}
+                  </a>
                 </li>
-                <li style={{ display:'list-item',margin:'0px 0px 0px 16px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
-                  <a href="/" style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer' }}> {heading.h2}</a>
+                
+                {/* Heading 2 */}
+                <li style={{ 
+                  display:'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 16px',
+                  padding:'8px 0px' ,
+                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  listStyleType:'none' 
+                }}>
+                  <a href="/" style={{
+                    display:'flex', 
+                    alignItems:'center', 
+                    width:'100%', 
+                    margin: '0px', 
+                    padding:'0px', 
+                    lineHeight:'1.5', 
+                    color:'rgb(111, 115, 114)', 
+                    fontSize:'14px',
+                    textDecoration:'none',
+                    cursor: 'pointer' }}> 
+                    {heading.h2}
+                  </a>
                 </li>
-                <li style={{ display:'list-item',margin:'0px 0px 0px 32px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
-                  <a href=""style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer'  }}> {heading.h3}</a>
+                
+                {/* Heading 3 */}
+                <li style={{ 
+                  display:'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 32px',
+                  padding:'8px 0px' ,
+                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  listStyleType:'none' 
+                }}>
+                  <a href=""style={{
+                    display:'flex', 
+                    alignItems:'center', 
+                    width:'100%', 
+                    margin: '0px', 
+                    padding:'0px', 
+                    lineHeight:'1.5', 
+                    color:'rgb(111, 115, 114)', 
+                    fontSize:'14px',
+                    textDecoration:'none',
+                    cursor: 'pointer'  
+                  }}> 
+                    {heading.h3}
+                  </a>
                 </li >
-                <li style={{ display:'list-item',margin:'0px 0px 0px 48px ',padding:'4px 0px' ,borderBottom:'none', listStyleType:'none' }}>
-                  <a href=""style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer'  }}> {heading.h4}</a>
+
+                {/* Heading 4 */}
+                <li style={{ 
+                  display:'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 48px',
+                  padding:'8px 0px' ,
+                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  listStyleType:'none' 
+                }}>
+                  <a href=""style={{
+                    display:'flex', 
+                    alignItems:'center', 
+                    width:'100%', 
+                    margin:'0px', 
+                    padding:'0px', 
+                    lineHeight:'1.5', 
+                    color:'rgb(111, 115, 114)', 
+                    fontSize:'14px',
+                    textDecoration:'none',
+                    cursor: 'pointer'  
+                  }}> 
+                    {heading.h4}
+                  </a>
                 </li>
               </div>
     

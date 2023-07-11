@@ -16,6 +16,7 @@ import {
   import { useTranslation, Trans } from "react-i18next";
   import {Customize} from "../components/Customize";
   import { TableofContent } from "../components/TableofContent";
+import { useState } from "react";
 
   export default function MainScreen() {
     const headings = [
@@ -34,22 +35,15 @@ import {
         h4: 'Heading 4',
       },
     ]
-    const settings = [
-      {
-        id: '1',
-        h1: 'Setting 1',
-        h2: 'Heading 2',
-        h3: 'Heading 3',
-        h4: 'Heading 4',
-      },
-      {
-        id: '2',
-        h1: 'Heading 1',
-        h2: 'Heading 2',
-        h3: 'Heading 3',
-        h4: 'Heading 4',
-      },
-    ]
+    const [setting, setSetting] = useState({})
+
+    // Get data from Component Setting
+    const takeData = (setting) => {
+      setSetting(setting);
+      console.log(setting);
+    };
+
+
     return (
       <Page
           backAction={{content: 'Back', url: '/mainscreen'}}
@@ -58,7 +52,7 @@ import {
             <Layout.Section>
               <HorizontalGrid gap="4" columns={['twoThirds', 'oneThird']}>
                 <VerticalStack gap='4'>
-                  <Customize/>
+                  <Customize takeData={takeData}/>
                 </VerticalStack>
                 <VerticalStack>
                   <LegacyCard title='Preview'>
@@ -66,7 +60,7 @@ import {
                     <LegacyCard.Section>
                       <LegacyStack spacing="tight" vertical>
                         <p>A table of contents in the style below will be inserted into the template.</p>
-                        <TableofContent data={headings} settings={settings}/> 
+                        <TableofContent data={headings} setting={setting}/> 
                       </LegacyStack>
                     </LegacyCard.Section>
                     

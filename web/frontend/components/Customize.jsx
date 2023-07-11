@@ -7,27 +7,35 @@ import { useState, useCallback } from 'react';
 import {TextAlignmentRightMajor} from '@shopify/polaris-icons';
 import { Size } from "@shopify/app-bridge/actions/Modal";
 
-export function Customize() {
+export function Customize({ takeData }) {
   // const handleChange = (event) => {
   //   console.log(event);
   // };
 
   // Table of content title
   const [title, setTitle] = useState('Table of Contents');
+  const [indentation, setIndentation] = useState('Off');
+  const [section, setSection] = useState('On');
+
+  const [formValues, setFormValues] = useState({
+    title: '',
+    indentation: '',
+    section: ''
+  });
+
   const handleTitleChange = useCallback(
     (value) => {
-      setTitle(value);
-    },  
-    [],
+      setTitle(value); 
+    },
+    [title],
   );
 
   //Select Indentation
-  const [indentation, setIndentation] = useState('Off');
   const handleIndentationChange = useCallback(
     (value) => {
       setIndentation(value);
     },
-    [],
+    [indentation],
   );
 
   const options1 = [
@@ -36,12 +44,11 @@ export function Customize() {
   ];
 
   // Select Section Line
-  const [section, setSection] = useState('On');
   const handleSectionChange = useCallback(
     (value) => {
       setSection(value);
     },
-    [],
+    [section],
   );
   const options2 = [
     {label: 'On', value: 'On'},
@@ -86,17 +93,14 @@ const [color3, setColor3] = useState({
   saturation: 1,
 });
 
-    // Set value of form
-    const [formValues, setFormValues] = useState({
-      title,
-      indentation,
-      section
-    });
-    // Handle submit form
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(formValues)
-    }
+
+    const handleSubmit = useCallback((_event) => {
+      formValues.title = title;
+      formValues.indentation = indentation;
+      formValues.section = section;
+      // console.log(formValues);
+      takeData(formValues);
+   }, [title, indentation, section]);
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -169,4 +173,3 @@ const [color3, setColor3] = useState({
       </Form>
     );
   }
-
