@@ -38,6 +38,7 @@ import { useState } from "react";
     const [setting, setSetting] = useState({})
 
     // Get data from Component Setting
+    // pass data frm child component to p
     const takeData = (setting) => {
       setSetting(setting);
       console.log(setting);

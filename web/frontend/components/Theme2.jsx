@@ -22,12 +22,12 @@ import { Item } from "./Item";
         title='Table of Contents'
       >
         <div style={{width: '275px', height:'250px'}}>
-            <div style={{margin: 'auto',paddingLeft: '20px'}}>
+            <div style={{margin: 'auto',paddingLeft: '20px', paddingRight: '20px'}}>
               <ul style={{ listStyle: 'none', margin:'0px', padding: '0px'}}>
               {data.map((heading, index) => (
                 <div key={index}>
       
-                  <li style={{ display:'list-item',padding:'4px 0px ', listStyleType:'none', borderBottom: '1px solid black' }}>
+                  <li style={{ display:'list-item',padding:'4px 0px', listStyleType:'none', borderBottom: '1px solid black' }}>
                     <a href="/" style={{display:'flex', alignItems:'center', width:'100%', margin:'0px', padding:'0px', lineHeight:'1.5', color:'rgb(111, 115, 114)', fontSize:'14px',textDecoration:'none',cursor: 'pointer' }}> {heading.h1}</a>
                   </li>
                   <li style={{ display:'list-item',margin:'0px 0px 0px 16px ',padding:'4px 0px' , listStyleType:'none', borderBottom: '1px solid black' }}>

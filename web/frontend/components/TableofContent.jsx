@@ -14,9 +14,13 @@ import {
 
   export function TableofContent({data}) {
       const setting = {
-        title: 'Test Table of content',
+        title: 'aa',
         identation: 'On',
-        section: 'On'
+        section: 'On',
+        heading1: false,
+        heading2: true,
+        heading3: false,
+        heading4: true
       }
     console.log(setting)
     return (
@@ -35,7 +39,7 @@ import {
               <div key={index}>
                 {/* Heading 1 */}
                 <li style={{ 
-                  display:'list-item',
+                  display: setting.heading1 == false ? 'none': 'list-item',
                   padding:'8px 0px ',
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -57,7 +61,7 @@ import {
                 
                 {/* Heading 2 */}
                 <li style={{ 
-                  display:'list-item',
+                  display: setting.heading2 == false ? 'none' : 'list-item',
                   margin: setting.identation == 'Off'? '0px' : '0 0 0 16px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
@@ -80,7 +84,7 @@ import {
                 
                 {/* Heading 3 */}
                 <li style={{ 
-                  display:'list-item',
+                  display: setting.heading3 == false ? 'none' : 'list-item',
                   margin: setting.identation == 'Off'? '0px' : '0 0 0 32px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
@@ -104,7 +108,7 @@ import {
 
                 {/* Heading 4 */}
                 <li style={{ 
-                  display:'list-item',
+                  display: setting.heading4 == false ? 'none':'list-item',
                   margin: setting.identation == 'Off'? '0px' : '0 0 0 48px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
