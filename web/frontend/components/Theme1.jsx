@@ -21,7 +21,7 @@ import { Item } from "./Item";
       <LegacyCard
         title='Table of Contents'
       >
-        <div style={{width: '375px', height:'250px'}}>
+        <div style={{width: '275px', height:'250px'}}>
             <div style={{margin: 'auto',paddingLeft: '20px'}}>
               <ul style={{ listStyle: 'none', margin:'0px', padding: '0px'}}>
               {data.map((heading, index) => (

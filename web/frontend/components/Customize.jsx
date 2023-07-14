@@ -29,11 +29,18 @@ export function Customize({ setSetting }) {
   const [title, setTitle] = useState('');
   const [indentation, setIndentation] = useState('Off');
   const [section, setSection] = useState('On');
-
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+  const [checked4, setChecked4] = useState(false);
   const [formValues, setFormValues] = useState({
     title: '',
     indentation: '',
-    section: ''
+    section: '',
+    checked1:false,
+    checked2:false,
+    checked3:false,
+    checked4:false
   });
 
   const handleTitleChange = useCallback(
@@ -69,25 +76,33 @@ export function Customize({ setSetting }) {
   ];
 
 //Headings
-const [checked1, setChecked1] = useState(false);
+
 const handleChange1 = useCallback(
-  (newChecked) => setChecked1(newChecked),
-  [],
+  (value) => { 
+    setChecked1(value);
+  },
+  [checked1],
 );
-const [checked2, setChecked2] = useState(false);
+
 const handleChange2 = useCallback(
-  (newChecked) => setChecked2(newChecked),
-  [],
+  (value) => { 
+    setChecked2(value);
+  },
+  [checked2],
 );
-const [checked3, setChecked3] = useState(false);
+
 const handleChange3 = useCallback(
-  (newChecked) => setChecked3(newChecked),
-  [],
+  (value) => { 
+    setChecked3(value);
+  },
+  [checked3],
 );
-const [checked4, setChecked4] = useState(false);
+
 const handleChange4 = useCallback(
-  (newChecked) => setChecked4(newChecked),
-  [],
+  (value) => { 
+    setChecked4(value);
+  },
+  [checked4],
 );
 //Color
 const [color1, setColor1] = useState({
@@ -111,9 +126,13 @@ const [color3, setColor3] = useState({
       formValues.title = title;
       formValues.indentation = indentation;
       formValues.section = section;
-      console.log(formValues); 
+      formValues.checked1 = checked1;
+      formValues.checked2 = checked2; 
+      formValues.checked3 = checked3;
+      formValues.checked4 = checked4;
+      // console.log(formValues);
       setSetting(formValues);
-   }, [title, indentation, section]);
+   }, [title, indentation, section, checked1, checked2, checked3, checked4]);
 
     return (
       <Form onSubmit={handleSubmit}>
@@ -152,21 +171,25 @@ const [color3, setColor3] = useState({
                   label="h1"
                   checked={checked1}
                   onChange={handleChange1}
+                  value={checked1}
                 />
                 <Checkbox
                   label="h2"
                   checked={checked2}
                   onChange={handleChange2}
+                  value={checked2}
                 />
                 <Checkbox
                   label="h3"
                   checked={checked3}
                   onChange={handleChange3}
+                  value={checked3}
                 />
                 <Checkbox
                   label="h4"
                   checked={checked4}
                   onChange={handleChange4}
+                  value={checked4}
                 />
               </VerticalStack>
             <VerticalStack>

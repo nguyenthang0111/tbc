@@ -30,7 +30,7 @@ import {
               <div key={index}>
                 {/* Heading 1 */}
                 <li style={{ 
-                  display:'list-item',
+                  display: setting.heading1 == false ? 'none': 'list-item',
                   padding:'8px 0px ',
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -52,8 +52,8 @@ import {
                 
                 {/* Heading 2 */}
                 <li style={{ 
-                  display:'list-item',
-                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 16px',
+                  display: setting.heading2 == false ? 'none' : 'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 16px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -75,8 +75,8 @@ import {
                 
                 {/* Heading 3 */}
                 <li style={{ 
-                  display:'list-item',
-                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 32px',
+                  display: setting.heading3 == false ? 'none' : 'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 32px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -99,8 +99,8 @@ import {
 
                 {/* Heading 4 */}
                 <li style={{ 
-                  display:'list-item',
-                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 48px',
+                  display: setting.heading4 == false ? 'none':'list-item',
+                  margin: setting.identation == 'Off'? '0px' : '0 0 0 48px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
