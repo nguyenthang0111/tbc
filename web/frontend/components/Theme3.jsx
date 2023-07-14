@@ -22,7 +22,7 @@ import { Item } from "./Item";
         title='Table of Contents'
       >
         <div style={{width: '275px', height:'250px'}}>
-            <div style={{margin: 'auto',paddingLeft: '20px'}}>
+            <div style={{margin: 'auto',paddingLeft: '20px', paddingRight: '20px'}}>
               <ul style={{ listStyle: 'number', margin:'0px', padding: '0px'}}>
               {data.map((heading, index) => (
                 <div key={index}>
