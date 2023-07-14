@@ -12,12 +12,7 @@ import {
   import { useAppQuery, useAuthenticatedFetch } from "../hooks";
   import { useState, useCallback } from 'react';
 
-  export function TableofContent({data}) {
-      const setting = {
-        title: 'Test Table of content',
-        identation: 'On',
-        section: 'On'
-      }
+  export function TableofContent({data, setting}) {
     console.log(setting)
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
@@ -58,7 +53,7 @@ import {
                 {/* Heading 2 */}
                 <li style={{ 
                   display:'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 16px',
+                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 16px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -81,7 +76,7 @@ import {
                 {/* Heading 3 */}
                 <li style={{ 
                   display:'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 32px',
+                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 32px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 
@@ -105,7 +100,7 @@ import {
                 {/* Heading 4 */}
                 <li style={{ 
                   display:'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 48px',
+                  margin: setting.indentation == 'Off'? '0px' : '0 0 0 48px',
                   padding:'8px 0px' ,
                   borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
                   listStyleType:'none' 

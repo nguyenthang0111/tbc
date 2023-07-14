@@ -3,17 +3,30 @@ import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Form, Text, TextFie
 import { Toast } from "@shopify/app-bridge-react";
 import { useTranslation } from "react-i18next";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {TextAlignmentRightMajor} from '@shopify/polaris-icons';
 import { Size } from "@shopify/app-bridge/actions/Modal";
 
-export function Customize({ takeData }) {
+export function Customize({ setSetting }) {
+  const {
+    data,
+    isLoading,
+    isRefetching,
+  } = useAppQuery({
+    url: "/api/shop",
+    reactQueryOptions: {
+    },
+  });
+
+  useEffect(async () => {
+    console.log(data);
+  }, [data])
   // const handleChange = (event) => {
   //   console.log(event);
   // };
 
   // Table of content title
-  const [title, setTitle] = useState('Table of Contents');
+  const [title, setTitle] = useState('');
   const [indentation, setIndentation] = useState('Off');
   const [section, setSection] = useState('On');
 
@@ -98,13 +111,13 @@ const [color3, setColor3] = useState({
       formValues.title = title;
       formValues.indentation = indentation;
       formValues.section = section;
-      // console.log(formValues);
-      takeData(formValues);
+      console.log(formValues); 
+      setSetting(formValues);
    }, [title, indentation, section]);
 
     return (
       <Form onSubmit={handleSubmit}>
-          <Text as="span" >
+          <Text as="span">
             <button type="submit" aria-hidden='true' tabIndex={-1}>Submit</button>
           </Text>
          <FormLayout>
