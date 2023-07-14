@@ -16,7 +16,7 @@ import {
   import { useTranslation, Trans } from "react-i18next";
   import {Customize} from "../components/Customize";
   import { TableofContent } from "../components/TableofContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
   export default function MainScreen() {
     const headings = [
@@ -37,13 +37,9 @@ import { useState } from "react";
     ]
     const [setting, setSetting] = useState({})
 
-    // Get data from Component Setting
-    // pass data frm child component to p
-    const takeData = (setting) => {
-      setSetting(setting);
-      console.log(setting);
-    };
-
+    useEffect(() => {
+      console.log('Setting change')
+    }, [setting])
 
     return (
       <Page
@@ -53,7 +49,7 @@ import { useState } from "react";
             <Layout.Section>
               <HorizontalGrid gap="4" columns={['twoThirds', 'oneThird']}>
                 <VerticalStack gap='4'>
-                  <Customize takeData={takeData}/>
+                  <Customize setSetting={setSetting}/>
                 </VerticalStack>
                 <VerticalStack>
                   <LegacyCard title='Preview'>

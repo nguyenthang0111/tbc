@@ -12,16 +12,7 @@ import {
   import { useAppQuery, useAuthenticatedFetch } from "../hooks";
   import { useState, useCallback } from 'react';
 
-  export function TableofContent({data}) {
-      const setting = {
-        title: 'aa',
-        identation: 'On',
-        section: 'On',
-        heading1: false,
-        heading2: true,
-        heading3: false,
-        heading4: true
-      }
+  export function TableofContent({data, setting}) {
     console.log(setting)
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>

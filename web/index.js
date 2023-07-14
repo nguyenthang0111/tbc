@@ -8,6 +8,10 @@ import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
 import GDPRWebhookHandlers from "./gdpr.js";
 
+import connectDB from "./config/db.js";
+
+import User from "./model/user.js"
+
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
   10
@@ -46,6 +50,30 @@ app.get("/api/products/count", async (_req, res) => {
   res.status(200).send(countData);
 });
 
+app.get("/api/shop", async (_req, res) => {
+  const shopData = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  res.status(200).send(shopData.data);
+});
+
+// Create table of content
+app.get("/api/setting/create", async (_req, res) => {
+  const shopData = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  res.status(200).send(shopData.data);
+});
+
+// Update table of content
+app.get("/api/setting/update", async (_req, res) => {
+  const shopData = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  res.status(200).send(shopData.data);
+});
+
+
 app.get("/api/products/create", async (_req, res) => {
   let status = 200;
   let error = null;
@@ -71,3 +99,5 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
 });
 
 app.listen(PORT);
+
+connectDB()
