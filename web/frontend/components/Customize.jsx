@@ -13,7 +13,7 @@ export function Customize({ setSetting }) {
     isLoading,
     isRefetching,
   } = useAppQuery({
-    url: "/api/shop",
+    url: "/api/article",
     reactQueryOptions: {
     },
   });
@@ -135,7 +135,7 @@ const [color3, setColor3] = useState({
    }, [title, indentation, section, checked1, checked2, checked3, checked4]);
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} >
           <Text as="span">
             <button type="submit" aria-hidden='true' tabIndex={-1}>Submit</button>
           </Text>
