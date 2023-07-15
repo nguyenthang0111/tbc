@@ -12,16 +12,12 @@ import {
   import { useAppQuery, useAuthenticatedFetch } from "../hooks";
   import { useState, useCallback } from 'react';
 
-  export function TableofContent({data, setting}) {
-<<<<<<< HEAD
+  export function Setting2({data, setting2}) {
       // const setting = {
       //   title: 'Test Table of content',
       //   identation: 'On',
-      //   section: 'On'
-      // }
-=======
->>>>>>> 17676a42a9e4caac33d92ca5e1a29385b4da10e0
-    console.log(setting)
+      //   section: 'On' }
+    console.log(setting2)
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
         <div style={{width:'100%', maxWidth:'none', margin: '0px', padding: '16px', backgroundColor:'rgb(247,249,249)', border: '1px solid rgb(228,228,228)'}}>
@@ -38,9 +34,9 @@ import {
               <div key={index}>
                 {/* Heading 1 */}
                 <li style={{ 
-                  display: setting.heading1 == false ? 'none': 'list-item',
+                  display:'list-item',
                   padding:'8px 0px ',
-                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  borderBottom:  'none', 
                   listStyleType:'none' 
                 }}>
                   <a href="/" style={{
@@ -60,10 +56,10 @@ import {
                 
                 {/* Heading 2 */}
                 <li style={{ 
-                  display: setting.heading2 == false ? 'none' : 'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 16px',
+                  display:'list-item',
+                  margin:  '0 0 0 16px',
                   padding:'8px 0px' ,
-                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  borderBottom:  'none', 
                   listStyleType:'none' 
                 }}>
                   <a href="/" style={{
@@ -83,10 +79,10 @@ import {
                 
                 {/* Heading 3 */}
                 <li style={{ 
-                  display: setting.heading3 == false ? 'none' : 'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 32px',
+                  display:'list-item',
+                  margin: '0 0 0 32px',
                   padding:'8px 0px' ,
-                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  borderBottom:  'none', 
                   listStyleType:'none' 
                 }}>
                   <a href=""style={{
@@ -107,10 +103,10 @@ import {
 
                 {/* Heading 4 */}
                 <li style={{ 
-                  display: setting.heading4 == false ? 'none':'list-item',
-                  margin: setting.identation == 'Off'? '0px' : '0 0 0 48px',
+                  display:'list-item',
+                  margin:  '0 0 0 48px',
                   padding:'8px 0px' ,
-                  borderBottom: setting.section == 'Off' ? 'none': '1px solid rgb(111, 115, 114)', 
+                  borderBottom:  'none', 
                   listStyleType:'none' 
                 }}>
                   <a href=""style={{
@@ -136,4 +132,3 @@ import {
       </div>
     );
   }
-  

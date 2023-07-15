@@ -3,24 +3,44 @@ import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Form, Text, TextFie
 import { Toast } from "@shopify/app-bridge-react";
 import { useTranslation } from "react-i18next";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {TextAlignmentRightMajor} from '@shopify/polaris-icons';
 import { Size } from "@shopify/app-bridge/actions/Modal";
 
-export function Customize({ takeData }) {
+export function Customize({ setSetting }) {
+  const {
+    data,
+    isLoading,
+    isRefetching,
+  } = useAppQuery({
+    url: "/api/shop",
+    reactQueryOptions: {
+    },
+  });
+
+  useEffect(async () => {
+    console.log(data);
+  }, [data])
   // const handleChange = (event) => {
   //   console.log(event);
   // };
 
   // Table of content title
-  const [title, setTitle] = useState('Table of Contents');
+  const [title, setTitle] = useState('');
   const [indentation, setIndentation] = useState('Off');
   const [section, setSection] = useState('On');
-
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+  const [checked4, setChecked4] = useState(false);
   const [formValues, setFormValues] = useState({
     title: '',
     indentation: '',
-    section: ''
+    section: '',
+    checked1:false,
+    checked2:false,
+    checked3:false,
+    checked4:false
   });
 
   const handleTitleChange = useCallback(
@@ -56,25 +76,33 @@ export function Customize({ takeData }) {
   ];
 
 //Headings
-const [checked1, setChecked1] = useState(false);
+
 const handleChange1 = useCallback(
-  (newChecked) => setChecked1(newChecked),
-  [],
+  (value) => { 
+    setChecked1(value);
+  },
+  [checked1],
 );
-const [checked2, setChecked2] = useState(false);
+
 const handleChange2 = useCallback(
-  (newChecked) => setChecked2(newChecked),
-  [],
+  (value) => { 
+    setChecked2(value);
+  },
+  [checked2],
 );
-const [checked3, setChecked3] = useState(false);
+
 const handleChange3 = useCallback(
-  (newChecked) => setChecked3(newChecked),
-  [],
+  (value) => { 
+    setChecked3(value);
+  },
+  [checked3],
 );
-const [checked4, setChecked4] = useState(false);
+
 const handleChange4 = useCallback(
-  (newChecked) => setChecked4(newChecked),
-  [],
+  (value) => { 
+    setChecked4(value);
+  },
+  [checked4],
 );
 //Color
 const [color1, setColor1] = useState({
@@ -98,13 +126,17 @@ const [color3, setColor3] = useState({
       formValues.title = title;
       formValues.indentation = indentation;
       formValues.section = section;
+      formValues.checked1 = checked1;
+      formValues.checked2 = checked2; 
+      formValues.checked3 = checked3;
+      formValues.checked4 = checked4;
       // console.log(formValues);
-      takeData(formValues);
-   }, [title, indentation, section]);
+      setSetting(formValues);
+   }, [title, indentation, section, checked1, checked2, checked3, checked4]);
 
     return (
       <Form onSubmit={handleSubmit}>
-          <Text as="span" >
+          <Text as="span">
             <button type="submit" aria-hidden='true' tabIndex={-1}>Submit</button>
           </Text>
          <FormLayout>
@@ -139,21 +171,25 @@ const [color3, setColor3] = useState({
                   label="h1"
                   checked={checked1}
                   onChange={handleChange1}
+                  value={checked1}
                 />
                 <Checkbox
                   label="h2"
                   checked={checked2}
                   onChange={handleChange2}
+                  value={checked2}
                 />
                 <Checkbox
                   label="h3"
                   checked={checked3}
                   onChange={handleChange3}
+                  value={checked3}
                 />
                 <Checkbox
                   label="h4"
                   checked={checked4}
                   onChange={handleChange4}
+                  value={checked4}
                 />
               </VerticalStack>
             <VerticalStack>
