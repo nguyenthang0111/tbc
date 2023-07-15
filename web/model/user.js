@@ -3,22 +3,22 @@ import mongoose from "mongoose";
 const userScheme = new mongoose.Schema({
     user_id:{
         type: Number,
-        required: true
+        // required: true
     },
     shopinfo:{
-        shop_id: { type: Number, required: true },
-        email: { type: String, required: true },
-        name: { type: String, required: true },
-        shop_plan: { type: String, required: true }
+        shop_id: { type: Number },
+        email: { type: String },
+        name: { type: String },
+        shop_plan: { type: String }
     },
     toc:{
-        title: { type: String, required: true },
-        h1: { type: Boolean, required: true },
-        h2: { type: Boolean, required: true },
-        h3: { type: Boolean, required: true },
-        h4: { type: Boolean, required: true },
-        identation: { type: String, required: true },
-        section: { type: String, required: true },
+        title: { type: String },
+        h1: { type: Boolean },
+        h2: { type: Boolean },
+        h3: { type: Boolean },
+        h4: { type: Boolean },
+        identation: { type: String },
+        section: { type: String },
         article_handles: [{
             type: String
         }]

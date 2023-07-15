@@ -108,7 +108,7 @@ export default function Step1Screen() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Page title="Step 1: Select theme Table of Contents">
+      <Page narrowWidth title="Step 1: Select theme Table of Contents">
         <Layout>
           <Layout.Section>
           <div style={{ display: "flex", justifyContent: "center", textAlign: "center"}}>

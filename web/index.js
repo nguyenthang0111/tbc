@@ -11,11 +11,15 @@ import GDPRWebhookHandlers from "./gdpr.js";
 import connectDB from "./config/db.js";
 
 import User from "./model/user.js"
+import user from "./model/user.js";
 
 const PORT = parseInt(
   process.env.BACKEND_PORT || process.env.PORT || "3000",
   10
 );
+
+// Connect DB
+connectDB()
 
 const STATIC_PATH =
   process.env.NODE_ENV === "production"
@@ -49,31 +53,134 @@ app.get("/api/products/count", async (_req, res) => {
   });
   res.status(200).send(countData);
 });
+//--------------------------------------------------------------
 
-app.get("/api/shop", async (_req, res) => {
-  const shopData = await shopify.api.rest.Shop.all({
+app.get("/api/blog", async (_req, res) => {
+  const blogData = await shopify.api.rest.Blog.all({
     session: res.locals.shopify.session,
   });
-  res.status(200).send(shopData.data);
+  const blogId = blogData.data.map(element => element.id);
+  // blogId.map(element => {
+  //   const articles = shopify.api.rest.Article.all({
+  //     session: res.locals.shopify.session,
+  //     blog_id: element
+  //   });
+  // })
+  const articleData = await shopify.api.rest.Article.all({
+    session: res.locals.shopify.session,
+
+  });
+  res.status(200).send(blogData);
 });
 
-// Create table of content
-app.get("/api/setting/create", async (_req, res) => {
-  const shopData = await shopify.api.rest.Shop.all({
+app.get("/api/blog", async (_req, res) => {
+  const blogData = await shopify.api.rest.Blog.all({
     session: res.locals.shopify.session,
   });
-  res.status(200).send(shopData.data);
+  const blogId = blogData.data.map(element => element.id);
+  // blogId.map(element => {
+  //   const articles = shopify.api.rest.Article.all({
+  //     session: res.locals.shopify.session,
+  //     blog_id: element
+  //   });
+  // })
+  const articleData = await shopify.api.rest.Article.all({
+    session: res.locals.shopify.session,
+
+  });
+  res.status(200).send(blogData);
 });
 
-// Update table of content
-app.get("/api/setting/update", async (_req, res) => {
-  const shopData = await shopify.api.rest.Shop.all({
+app.get("/setting", async (_req, res) => {
+  const blogData = await shopify.api.rest.Blog.all({
     session: res.locals.shopify.session,
   });
-  res.status(200).send(shopData.data);
+  const blogId = blogData.data.map(element => element.id);
+  // blogId.map(element => {
+  //   const articles = shopify.api.rest.Article.all({
+  //     session: res.locals.shopify.session,
+  //     blog_id: element
+  //   });
+  // })
+  const articleData = await shopify.api.rest.Article.all({
+    session: res.locals.shopify.session,
+
+  });
+  res.status(200).send(blogData);
+});
+
+app.post("/setting/create", async (req, res) => {
+  if (!req.body){
+    res.status(400).send({ message : "Setting can not empty"});
+    return;
+  }
+  // const settingData = {
+  //   title: req.body.title,
+  //   identation: req.body.identation,
+  //   section: req.body.section,
+  //   h1: req.body.checked1,
+  //   h2: req.body.checked2,
+  //   h3: req.body.checked3,
+  //   h4: req.body.checked4,
+  // }
+
+  const user = new User({
+    toc: {
+      title: req.body.title,
+      identation: req.body.identation,
+      section: req.body.section,
+      h1: req.body.checked1,
+      h2: req.body.checked2,
+      h3: req.body.checked3,
+      h4: req.body.checked4,
+    },
+    shop_plan: 'free'
+  })
+  
+  user
+    .save()
+    .then(() => res.json('User setting added!'))
+    .catch((error) => {console.log(error)});
+
 });
 
 
+//UPDATE
+app.put("/setting/update", async (req, res) => {
+  if (!req.body){
+    res.status(400).send({ message : "Setting can not empty"});
+    return;
+  }
+  // const settingData = {
+  //   title: req.body.title,
+  //   identation: req.body.identation,
+  //   section: req.body.section,
+  //   h1: req.body.checked1,
+  //   h2: req.body.checked2,
+  //   h3: req.body.checked3,
+  //   h4: req.body.checked4,
+  // }
+
+  const user = new User({
+    toc: {
+      title: req.body.title,
+      identation: req.body.identation,
+      section: req.body.section,
+      h1: req.body.checked1,
+      h2: req.body.checked2,
+      h3: req.body.checked3,
+      h4: req.body.checked4,
+    },
+    shop_plan: 'free'
+  })
+  
+  user
+    .save()
+    .then(() => res.json('User setting added!'))
+    .catch((error) => {console.log(error)});
+
+});
+//-----------------------------------------------------------
 app.get("/api/products/create", async (_req, res) => {
   let status = 200;
   let error = null;
@@ -98,6 +205,8 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
     .send(readFileSync(join(STATIC_PATH, "index.html")));
 });
 
-app.listen(PORT);
+// app.listen(PORT);
+app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT}`),
+);
 
-connectDB()
