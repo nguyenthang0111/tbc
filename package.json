@@ -14,6 +14,7 @@
   "dependencies": {
     "@shopify/app": "^3.0.0",
     "@shopify/cli": "^3.0.0",
+    "@shopify/web-pixels-extension": "^0.1.6",
     "react-router-dom": "^6.14.1"
   }
 }

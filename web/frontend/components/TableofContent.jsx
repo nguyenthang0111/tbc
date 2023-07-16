@@ -13,18 +13,6 @@ import {
   import { useState, useCallback } from 'react';
 
   export function TableofContent({data, setting}) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      // const setting = {
-      //   title: 'Test Table of content',
-      //   identation: 'On',
-      //   section: 'On'
-      // }
-=======
->>>>>>> 17676a42a9e4caac33d92ca5e1a29385b4da10e0
-    console.log(setting)
-=======
->>>>>>> 93d1ed827713df458fe85bd455bdba032deb5480
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
         <div style={{width:'100%', maxWidth:'none', margin: '0px', padding: '16px', backgroundColor:'rgb(247,249,249)', border: '1px solid rgb(228,228,228)'}}>
