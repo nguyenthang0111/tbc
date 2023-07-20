@@ -13,7 +13,6 @@ import {
   import { useState, useCallback } from 'react';
 
   export function TableofContent({data, setting}) {
-    console.log(setting)
     return (
       <div style={{display:'flex',flexDirection:'column', alignItems:'center'}}>
         <div style={{width:'100%', maxWidth:'none', margin: '0px', padding: '16px', backgroundColor:'rgb(247,249,249)', border: '1px solid rgb(228,228,228)'}}>

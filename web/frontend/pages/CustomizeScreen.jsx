@@ -18,7 +18,7 @@ import {
   import { TableofContent } from "../components/TableofContent";
 import { useEffect, useState } from "react";
 
-  export default function MainScreen() {
+  export default function CustomizeScreen() {
     const headings = [
       {
         id: '1',

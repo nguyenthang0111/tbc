@@ -17,6 +17,9 @@ const PORT = parseInt(
   10
 );
 
+// Connect DB
+connectDB()
+
 const STATIC_PATH =
   process.env.NODE_ENV === "production"
     ? `${process.cwd()}/frontend/dist`
@@ -49,31 +52,133 @@ app.get("/api/products/count", async (_req, res) => {
   });
   res.status(200).send(countData);
 });
+//--------------------------------------------------------------
 
+//GET ARTICLE
+app.get("/api/article", async (_req, res) => {
+  console.log('starting...');
+  const blogData = await shopify.api.rest.Blog.all({
+    session: res.locals.shopify.session,
+  });
+  // console.log('blogData', blogData)
+  // const blogId = blogData.data.map(element => element.id);
+  // blogId.map(element => {
+  //   const articles = shopify.api.rest.Article.all({
+  //     session: res.locals.shopify.session,
+  //     blog_id: element
+  //   });
+  // })
+  // console.log('blogid', blogId)
+  // const articleData = await shopify.api.rest.Article.all({
+  //   session: res.locals.shopify.session,
+
+  // });
+  // console.log(blogData);
+  // console.log(articleData);
+  const shopData = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  console.log(shopData.data[0]);
+  res.status(200).send(shopData);
+});
+
+// SHOP || GET || STEP 1 SCREEN
 app.get("/api/shop", async (_req, res) => {
   const shopData = await shopify.api.rest.Shop.all({
     session: res.locals.shopify.session,
   });
-  res.status(200).send(shopData.data);
+  const shop = {
+    shopid: shopData.data[0].id,
+    email: shopData.data[0].email,
+    name: shopData.data[0].shop_owner,
+    store_name: shopData.data[0].name,
+    shop_plan: shopData.data[0].plan_name,
+    domain: shopData.data[0].domain
+  }
+  // console.log(shop);
+  res.status(200).send(shop);
 });
 
-// Create table of content
-app.get("/api/setting/create", async (_req, res) => {
+//CREATE || SETTING
+app.post("/setting/create", async (req, res) => {
+  if (!req.body){
+    res.status(400).send({ message : "Setting can not empty"});
+    return;
+  }
+
+  const user = new User({
+    domain: req.body.domain,
+    toc: {
+      title: req.body.title,
+      indentation: req.body.indentation,
+      section: req.body.section,
+      h1: req.body.checked1,
+      h2: req.body.checked2,
+      h3: req.body.checked3,
+      h4: req.body.checked4
+    },
+    shopinfo: {
+      shopid: req.body.shopid,
+      email: req.body.email,
+      name: req.body.name,
+      store_name: req.body.store_name,
+      shop_plan: req.body.shop_plan,
+    },
+    shop_plan: 'free'
+  })
+  
+  user
+    .save()
+    .then(() => res.json('User setting added!'))
+    .catch((error) => {console.log(error)});
+
+});
+
+// SETTING || GET
+app.get("/setting/get", async (req, res) => {
+  User.findOne({ domain: req.query.domain })
+    .then((value) => {
+      res.status(200).send(value);
+    })
+    .catch((e) => {
+      console.log(e)
+    })  
+});
+
+// GET DOMAIN
+app.get("/api/domain", async (_req, res) => {
   const shopData = await shopify.api.rest.Shop.all({
     session: res.locals.shopify.session,
   });
-  res.status(200).send(shopData.data);
-});
-
-// Update table of content
-app.get("/api/setting/update", async (_req, res) => {
-  const shopData = await shopify.api.rest.Shop.all({
-    session: res.locals.shopify.session,
-  });
-  res.status(200).send(shopData.data);
+ res.status(200).send(shopData.data[0]);
+    
 });
 
 
+
+//UPDATE
+app.put("/setting/update", async (req, res) => {
+  const { title, indentation, section, checked1, checked2, checked3, checked4, domain } = req.body;
+  await User.findOneAndUpdate({ domain }, {
+    toc: {
+      title: title,
+      h1: checked1,
+      h2: checked2,
+      h3: checked3,
+      h4: checked4,
+      indentation: indentation,
+      section: section
+    }
+}, { upsert: true, new: true })
+    .then((data) => console.log(data))
+return res.status(200).json({
+    message: 'Updated successfuly, Refreshing...',
+    error: 0
+})
+});
+
+
+//-----------------------------------------------------------
 app.get("/api/products/create", async (_req, res) => {
   let status = 200;
   let error = null;
@@ -98,6 +203,8 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
     .send(readFileSync(join(STATIC_PATH, "index.html")));
 });
 
-app.listen(PORT);
+// app.listen(PORT);
+app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT}`),
+);
 
-connectDB()
