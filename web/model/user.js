@@ -1,14 +1,15 @@
 import mongoose from "mongoose";
 
 const userScheme = new mongoose.Schema({
-    user_id:{
-        type: Number,
+    domain:{
+        type: String,
         // required: true
     },
     shopinfo:{
-        shop_id: { type: Number },
+        shopid: { type: Number },
         email: { type: String },
         name: { type: String },
+        store_name: { type: String},
         shop_plan: { type: String }
     },
     toc:{
@@ -17,7 +18,7 @@ const userScheme = new mongoose.Schema({
         h2: { type: Boolean },
         h3: { type: Boolean },
         h4: { type: Boolean },
-        identation: { type: String },
+        indentation: { type: String },
         section: { type: String },
         article_handles: [{
             type: String

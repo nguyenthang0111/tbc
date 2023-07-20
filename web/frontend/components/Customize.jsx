@@ -1,31 +1,17 @@
 
-import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Form, Text, TextField, LegacyCard, FormLayout } from "@shopify/polaris";
+import { ColorPicker, Checkbox, VerticalStack, Icon, Select, Form, Text, Button, TextField, LegacyCard, FormLayout } from "@shopify/polaris";
 import { Toast } from "@shopify/app-bridge-react";
 import { useTranslation } from "react-i18next";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 import { useState, useCallback, useEffect } from 'react';
 import {TextAlignmentRightMajor} from '@shopify/polaris-icons';
 import { Size } from "@shopify/app-bridge/actions/Modal";
+import { useMutation, useQuery } from "react-query";
+import axios from "axios";
 
 export function Customize({ setSetting }) {
-  const {
-    data,
-    isLoading,
-    isRefetching,
-  } = useAppQuery({
-    url: "/api/article",
-    reactQueryOptions: {
-    },
-  });
 
-  useEffect(async () => {
-    console.log(data);
-  }, [data])
-  // const handleChange = (event) => {
-  //   console.log(event);
-  // };
-
-  // Table of content title
+  const [dataSetting, setDataSetting] = useState({});
   const [title, setTitle] = useState('');
   const [indentation, setIndentation] = useState('Off');
   const [section, setSection] = useState('On');
@@ -33,15 +19,34 @@ export function Customize({ setSetting }) {
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
   const [checked4, setChecked4] = useState(false);
-  const [formValues, setFormValues] = useState({
-    title: '',
-    indentation: '',
-    section: '',
-    checked1:false,
-    checked2:false,
-    checked3:false,
-    checked4:false
+
+  // Get domain 
+  const {
+    data,
+    isLoading,
+    isRefetching,
+  } = useAppQuery({
+    url: "/api/domain",
+    reactQueryOptions: {
+    },
   });
+ 
+  useEffect(async () => {
+    console.log(data);
+    axios.get(`/setting/get?domain=${data.domain}`)
+        .then(response => {
+          setDataSetting(response.data)
+          console.log(response.data)
+          setTitle(response.data.toc.title)
+          setIndentation(response.data.toc.indentation)
+          setSection(response.data.toc.section)
+          setChecked1(response.data.toc.h1)
+          setChecked2(response.data.toc.h2)
+          setChecked3(response.data.toc.h3)
+          setChecked4(response.data.toc.h4)
+        });
+  }, [data])
+
 
   const handleTitleChange = useCallback(
     (value) => {
@@ -121,24 +126,25 @@ const [color3, setColor3] = useState({
   saturation: 1,
 });
 
+const mutation = useMutation((data) => {
+  return axios.put("/setting/update", data);
+});
 
-    const handleSubmit = useCallback((_event) => {
-      formValues.title = title;
-      formValues.indentation = indentation;
-      formValues.section = section;
-      formValues.checked1 = checked1;
-      formValues.checked2 = checked2; 
-      formValues.checked3 = checked3;
-      formValues.checked4 = checked4;
-      // console.log(formValues);
-      setSetting(formValues);
-   }, [title, indentation, section, checked1, checked2, checked3, checked4]);
+    const handleSubmit = () => {
+      mutation.mutate({
+        title: title,
+        indentation: indentation,
+        section: section,
+        checked1: checked1,
+        checked2: checked2,
+        checked3: checked3,
+        checked4: checked4,
+        domain: dataSetting.domain
+      });
+    }
 
     return (
       <Form onSubmit={handleSubmit} >
-          <Text as="span">
-            <button type="submit" aria-hidden='true' tabIndex={-1}>Submit</button>
-          </Text>
          <FormLayout>
           <LegacyCard>
             <VerticalStack >
@@ -206,6 +212,8 @@ const [color3, setColor3] = useState({
         </VerticalStack>
       </LegacyCard>
       </FormLayout>
+      
+        <Button submit>Submit</Button>
       </Form>
     );
   }

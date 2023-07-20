@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Page,
@@ -14,8 +14,28 @@ import { useTranslation, Trans } from "react-i18next";
 import { Theme1 } from "../components/Theme1";
 import { Theme2 } from "../components/Theme2";
 import { Theme3 } from "../components/Theme3";
+import { useMutation } from "react-query";
+import axios from "axios";
+import { useAppQuery, useAuthenticatedFetch } from "../hooks";
+
 
 export default function Step1Screen() {
+  // GET DATA
+  const {
+    data,
+    isLoading,
+    isRefetching,
+  } = useAppQuery({
+    url: "/api/shop",
+    reactQueryOptions: {
+    },
+  });
+ 
+  useEffect(async () => {
+    console.log(data);
+  }, [data])
+
+
   const [selectedTheme, setSelectedTheme] = useState("theme1");
   const navigate = useNavigate();
   const handleThemeChange = useCallback(
@@ -65,6 +85,11 @@ export default function Step1Screen() {
     }
   };
 
+  // POST METHOD
+  const mutation = useMutation((value) => {
+    return axios.post("/setting/create", value);
+  });
+
   const handleSubmit = useCallback(
     (_event) => {
       switch (selectedTheme) {
@@ -89,7 +114,7 @@ export default function Step1Screen() {
         case "theme3":
           formValues.title = "Table of Contents";
           formValues.indentation = "Off";
-          formValues.section = "On";
+          formValues.section = "Off";
           formValues.checked1 = true;
           formValues.checked2 = true;
           formValues.checked3 = true;
@@ -99,11 +124,25 @@ export default function Step1Screen() {
           break;
       }
 
-      console.log(formValues);
+      mutation.mutate({
+        title: formValues.title,
+        indentation: formValues.indentation,
+        section: formValues.section,
+        checked1: formValues.checked1,
+        checked2: formValues.checked2,
+        checked3: formValues.checked3,
+        checked4: formValues.checked4,
+        shopid: data.shopid,
+        email: data.email,
+        name: data.name,
+        store_name: data.store_name,
+        shop_plan: data.shop_plan,
+        domain: data.domain
+      });
 
       navigate("/step2screen");
     },
-    [selectedTheme, navigate]
+    [selectedTheme]
   );
 
   return (
