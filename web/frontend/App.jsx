@@ -23,10 +23,6 @@ export default function App() {
             <NavigationMenu
               navigationLinks={[
                 {
-                  label: "Step 1",
-                  destination: "/step1screen",
-                },
-                {
                   label: "Step 2",
                   destination: "/step2screen",
                 },
