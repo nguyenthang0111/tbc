@@ -163,6 +163,19 @@ app.get("/setting/get", async (req, res) => {
     })  
 });
 
+
+// SETTING || GET
+app.get("/setting/get/themeapp", async (req, res) => {
+  const shopDomain = "wind-shop-4530.myshopify.com"
+  User.findOne({ domain: shopDomain })
+    .then((value) => {
+      res.status(200).send(value);
+    })
+    .catch((e) => {
+      console.log(e)
+    })  
+});
+
 // GET DOMAIN
 app.get("/api/domain", async (_req, res) => {
   const shopData = await shopify.api.rest.Shop.all({

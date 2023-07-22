@@ -1,4 +1,6 @@
-<div class="app"></div>
+{% for info in article.metafields.custom.setting.value %}
+  <h4 class="product-detail-heading">{{ info.name }}</h4>
+{% endfor %}
 
 {% schema %}
   {
