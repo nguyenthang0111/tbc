@@ -57,29 +57,47 @@ app.get("/api/products/count", async (_req, res) => {
 //GET ARTICLE
 app.get("/api/article", async (_req, res) => {
   console.log('starting...');
+  var index = 0;
   const blogData = await shopify.api.rest.Blog.all({
     session: res.locals.shopify.session,
   });
-  // console.log('blogData', blogData)
-  // const blogId = blogData.data.map(element => element.id);
-  // blogId.map(element => {
-  //   const articles = shopify.api.rest.Article.all({
+  const articleList = [];
+  const blogIds = blogData.data.map(element => element.id);
+  // blogIds.forEach( async (blogId) => {
+  //   const articles = await shopify.api.rest.Article.all({
   //     session: res.locals.shopify.session,
-  //     blog_id: element
+  //     blog_id: blogId
   //   });
-  // })
-  // console.log('blogid', blogId)
-  // const articleData = await shopify.api.rest.Article.all({
-  //   session: res.locals.shopify.session,
-
+  //   articles.data.forEach(article => {
+  //     return 
+  //   });
   // });
-  // console.log(blogData);
-  // console.log(articleData);
-  const shopData = await shopify.api.rest.Shop.all({
+  const articleData = await shopify.api.rest.Article.all({
     session: res.locals.shopify.session,
+    blog_id: blogIds[0]
   });
-  console.log(shopData.data[0]);
-  res.status(200).send(shopData);
+  const articles = articleData.data.map(element => {
+    return {
+      id: element.id,
+      name: element.title,
+      handle: element.handle,
+      status: 'On'
+    }
+  })
+  res.status(200).send(articles);
+});
+
+//SETTING || ADD HANDLE
+app.put("/setting/handle/update", async (req, res) => {
+  const { domain, article_handles } = req.body;
+  await User.findOneAndUpdate({ domain }, {
+    $set: {'toc.article_handles': article_handles}
+}, { upsert: true, new: true })
+    .then((data) => console.log(data))
+  return res.status(200).json({
+    message: 'Updated successfuly, Refreshing...',
+    error: 0
+})
 });
 
 // SHOP || GET || STEP 1 SCREEN
@@ -145,6 +163,19 @@ app.get("/setting/get", async (req, res) => {
     })  
 });
 
+
+// SETTING || GET
+app.get("/setting/get/themeapp", async (req, res) => {
+  const shopDomain = "wind-shop-4530.myshopify.com"
+  User.findOne({ domain: shopDomain })
+    .then((value) => {
+      res.status(200).send(value);
+    })
+    .catch((e) => {
+      console.log(e)
+    })  
+});
+
 // GET DOMAIN
 app.get("/api/domain", async (_req, res) => {
   const shopData = await shopify.api.rest.Shop.all({
@@ -176,6 +207,17 @@ return res.status(200).json({
     error: 0
 })
 });
+
+// app.get("/api/article/html", async (_req, res) => {
+//   const blogData = await shopify.api.rest.Blog.all({
+//     session: res.locals.shopify.session,
+//   });
+//     const articleData = await shopify.api.rest.Article.all({
+//     session: res.locals.shopify.session,
+//     blog_id: blogData.data[0].id,
+//   });
+//   console.log(articleData.data[1].body_html)
+// })
 
 
 //-----------------------------------------------------------

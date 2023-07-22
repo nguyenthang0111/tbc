@@ -1,0 +1,13 @@
+{% for info in article.metafields.custom.setting.value %}
+  <h4 class="product-detail-heading">{{ info.name }}</h4>
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Table Of Content",
+    "target": "head",
+    "javascript": "global.js",
+    "stylesheet": "style.css",
+    "settings": []
+  }
+{% endschema %}

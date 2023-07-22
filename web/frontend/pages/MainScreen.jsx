@@ -82,8 +82,7 @@ import { Search } from "../components/Search";
               </LegacyCard.Section>
               <LegacyCard.Section>
                 <div style={{padding: '0 20px 20px'}}>
-                  <Search />
-                  <ListItem  data={articles}/>
+                  <ListItem dataArticle={articles}/>
                 </div>
               </LegacyCard.Section>
             </LegacyCard>
